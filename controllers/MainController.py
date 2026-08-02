@@ -16,7 +16,7 @@ class MainController:
 
 
     def select_player(self):
-        print('test')
+        print(self.events_model.diceresult())
 
 
     def create_form(self):
