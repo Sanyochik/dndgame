@@ -17,19 +17,22 @@ class Events():
 
         return result
 
-    def diceresult(self):
-        dice = self.pulldice()
-        result = []
-        match dice:
+    def diceresult(self,dicevalue,diceattribute):
+        match dicevalue:
             case 1:
-                result+=(dice,f'Выпало значение: {dice} Критический провал')
+                result=(diceattribute,f'Выпало значение: {dicevalue} Критический провал')
             case 20:
-                result+=(dice,f'Выпало значение: {dice} Критический успех')
+                result=(diceattribute,f'Выпало значение: {dicevalue} Критический успех')
             case _:
-                statdice=self.getatribute(dice,self.users.getusers())
-                result+=(f'{dice}+{statdice}', f'Выпало значение: {dice}')
-
+                result=(diceattribute, f'Выпало значение: {dicevalue}')
 
         return result
-    def getatribute(self,dice_value,user):
-        print(user[0][2])
+    def getattribute(self,dice_value,user):
+        match dice_value:
+            case 1:
+                result=int(dice_value)
+            case 20:
+                result = int(dice_value) + int(user[0][2])
+            case _:
+                result = int(dice_value) + int(user[0][2])
+        return result
