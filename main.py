@@ -7,7 +7,8 @@ from controllers.MainController import MainController
 from models.db import DB
 from models.users import Users
 from models.events import Events
-from models import  attribute as attribute_model
+from models.attribute import  Attribute
+from models.dice import  Dice
 import views.hubform as hubform_view
 import views.createform as createform_view
 
@@ -25,6 +26,7 @@ content_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
 DB = DB(psycopg,os)
 Users = Users(DB)
+Dice = Dice(random)
 Events = Events(DB,random,Users)
 
 controller = MainController(
@@ -32,7 +34,8 @@ controller = MainController(
     db_model=DB,
     users_model=Users,
     events_model=Events,
-    attribute_model = attribute_model,
+    attribute_model = Attribute,
+    dice_model = Dice,
     hubform_view=hubform_view,
     createform_view=createform_view,
     content_frame = content_frame

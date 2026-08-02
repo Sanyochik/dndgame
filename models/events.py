@@ -4,35 +4,22 @@ class Events():
         self.random = random
         self.users = users
 
-    def getevents(self):
+    def geteventsid(self):
         connection = self.db.connect()
         cursor = connection.cursor()
-        request = cursor.execute("SELECT * FROM events")
+        request = cursor.execute(f"SELECT id FROM events")
         rows = request.fetchall()
+        rows = [row[0] for row in rows]
         connection.close()
 
         return rows
-    def pulldice(self):
-        result = self.random.randint(1,20)
 
-        return result
+    def getrandomevents(self):
+        print(self.random.choice(self.geteventsid()))
 
-    def diceresult(self,dicevalue,diceattribute):
-        match dicevalue:
-            case 1:
-                result=(diceattribute,f'Выпало значение: {dicevalue} Критический провал')
-            case 20:
-                result=(diceattribute,f'Выпало значение: {dicevalue} Критический успех')
-            case _:
-                result=(diceattribute, f'Выпало значение: {dicevalue}')
+    def addevent(self,title,discr,img,str_dif,chr_dif,vit_dif,str_ans,chr_ans,dmg):
+        connection = self.db.connect()
+        connection.execute(f"INSERT INTO events (title,description,img_url,str_dif,chr_dif,vit_dif,str_ans,chr_ans,dmg) VALUES ('{title}','{discr}','{img}',{str_dif},{chr_dif},{vit_dif},'{str_ans}','{chr_ans}',{dmg})")
+        connection.commit()
+        connection.close()
 
-        return result
-    def getattribute(self,dice_value,user):
-        match dice_value:
-            case 1:
-                result=int(dice_value)
-            case 20:
-                result = int(dice_value) + int(user[0][2])
-            case _:
-                result = int(dice_value) + int(user[0][2])
-        return result
