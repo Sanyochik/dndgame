@@ -7,7 +7,7 @@ from controllers.MainController import MainController
 from models.db import DB
 from models.users import Users
 from models.events import Events
-from models import  atribute as atribute_model
+from models import  attribute as attribute_model
 import views.hubform as hubform_view
 import views.createform as createform_view
 
@@ -32,7 +32,7 @@ controller = MainController(
     db_model=DB,
     users_model=Users,
     events_model=Events,
-    atribute_model = atribute_model,
+    attribute_model = attribute_model,
     hubform_view=hubform_view,
     createform_view=createform_view,
     content_frame = content_frame
