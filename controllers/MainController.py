@@ -1,9 +1,10 @@
 class MainController:
-    def __init__(self,ctk_lib,db_model,users_model,events_model,attribute_model,dice_model,hubform_view,createform_view,content_frame):
+    def __init__(self,ctk_lib,db_model,users_model,events_model,journey_model,attribute_model,dice_model,hubform_view,createform_view,content_frame):
         self.ctk_lib = ctk_lib
         self.users_model = users_model
         self.db_model = db_model
         self.events_model = events_model
+        self.journey_model = journey_model
         self.attribute_model = attribute_model
         self.dice_model = dice_model
         self.hubform_view = hubform_view
@@ -17,7 +18,7 @@ class MainController:
 
 
     def select_player(self):
-        print(self.events_model.getrandomevents())
+        print(self.events_model.getrandomevents([2]))
 
 
     def create_form(self):

@@ -4,18 +4,21 @@ class Events():
         self.random = random
         self.users = users
 
-    def geteventsid(self):
+    def getevents(self):
         connection = self.db.connect()
         cursor = connection.cursor()
-        request = cursor.execute(f"SELECT id FROM events")
+        request = cursor.execute(f"SELECT * FROM events")
         rows = request.fetchall()
-        rows = [row[0] for row in rows]
         connection.close()
 
         return rows
 
-    def getrandomevents(self):
-        print(self.random.choice(self.geteventsid()))
+    def getrandomevents(self,completed):
+        ids = [row[0] for row in self.getevents()]
+        result = [x for x in ids if x not in completed]
+        result = self.random.choice(result)
+
+        return result
 
     def addevent(self,title,discr,img,str_dif,chr_dif,vit_dif,str_ans,chr_ans,dmg):
         connection = self.db.connect()

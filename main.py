@@ -7,6 +7,7 @@ from controllers.MainController import MainController
 from models.db import DB
 from models.users import Users
 from models.events import Events
+from models.journey import Journey
 from models.attribute import  Attribute
 from models.dice import  Dice
 import views.hubform as hubform_view
@@ -26,14 +27,16 @@ content_frame.pack(fill="both", expand=True, padx=20, pady=20)
 
 DB = DB(psycopg,os)
 Users = Users(DB)
-Dice = Dice(random)
+Journey = Journey(DB)
 Events = Events(DB,random,Users)
+Dice = Dice(random)
 
 controller = MainController(
     ctk_lib = ctk_lib,
     db_model=DB,
     users_model=Users,
     events_model=Events,
+    journey_model=Journey,
     attribute_model = Attribute,
     dice_model = Dice,
     hubform_view=hubform_view,
