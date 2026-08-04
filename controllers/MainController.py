@@ -1,6 +1,7 @@
 class MainController:
-    def __init__(self,ctk_lib,db_model,users_model,events_model,journey_model,attribute_model,dice_model,hubform_view,createform_view,content_frame):
+    def __init__(self,ctk_lib,pil_lib,db_model,users_model,events_model,journey_model,attribute_model,dice_model,hubform_view,createform_view,journeyform_view,content_frame):
         self.ctk_lib = ctk_lib
+        self.pil_lib = pil_lib
         self.users_model = users_model
         self.db_model = db_model
         self.events_model = events_model
@@ -9,6 +10,7 @@ class MainController:
         self.dice_model = dice_model
         self.hubform_view = hubform_view
         self.createform_view = createform_view
+        self.journeyform_view = journeyform_view
         self.content_frame = content_frame
 
 
@@ -24,6 +26,10 @@ class MainController:
     def create_form(self):
         self.cleaner_form()
         self.createform_view.createform(self, self.ctk_lib, self.content_frame)
+
+    def journey_form(self):
+        self.cleaner_form()
+        self.journeyform_view.journeyform(self.ctk_lib,self.pil_lib, self.content_frame)
 
 
     def cleaner_form(self):

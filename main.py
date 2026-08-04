@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import customtkinter as ctk_lib
 import psycopg as psycopg
 import random as random
+from PIL import Image as pil
 from controllers.MainController import MainController
 from models.db import DB
 from models.users import Users
@@ -12,6 +13,7 @@ from models.attribute import  Attribute
 from models.dice import  Dice
 import views.hubform as hubform_view
 import views.createform as createform_view
+import views.journeyform as journeyform_view
 
 load_dotenv()
 
@@ -33,6 +35,7 @@ Dice = Dice(random)
 
 controller = MainController(
     ctk_lib = ctk_lib,
+    pil_lib = pil,
     db_model=DB,
     users_model=Users,
     events_model=Events,
@@ -41,9 +44,10 @@ controller = MainController(
     dice_model = Dice,
     hubform_view=hubform_view,
     createform_view=createform_view,
+    journeyform_view = journeyform_view,
     content_frame = content_frame
 
 )
-controller.hub_form()
+controller.journey_form()
 
 root.mainloop()
