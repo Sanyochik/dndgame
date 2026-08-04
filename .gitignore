@@ -2,7 +2,7 @@
 .idea/
 .pytest_cache/
 .env
-.img/*
+img/*
 *.pyc
 __pycache__/
 *.cpython-*
