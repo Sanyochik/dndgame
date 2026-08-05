@@ -29,7 +29,16 @@ class MainController:
 
     def journey_form(self):
         self.cleaner_form()
-        self.journeyform_view.journeyform(self.ctk_lib,self.pil_lib, self.content_frame)
+
+        active_journey = self.journey_model.getactivejourney(self.users_model.getusers(),self.events_model.getevents())
+        if not active_journey:
+            complited = self.journey_model.getcomplitejourney(self.users_model.getusers(),self.events_model.getevents())
+            active_event = self.events_model.getrandomevents(complited)
+            active_journey=self.journey_model.addjourney(self.users_model.getusers(),active_event)
+
+
+
+        #self.journeyform_view.journeyform(self.ctk_lib,self.pil_lib, self.content_frame)
 
 
     def cleaner_form(self):

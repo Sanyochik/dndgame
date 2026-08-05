@@ -13,10 +13,20 @@ class Events():
 
         return rows
 
+    def getcurrentevent(self,event_id):
+        connection = self.db.connect()
+        cursor = connection.cursor()
+        request = cursor.execute(f"SELECT * FROM events WHERE id={event_id}")
+        rows = request.fetchall()
+        connection.close()
+
+        return rows
+
     def getrandomevents(self,completed):
         ids = [row[0] for row in self.getevents()]
-        result = [x for x in ids if x not in completed]
-        result = self.random.choice(result)
+        notcomplitedid = [x for x in ids if x not in completed]
+        random_id = self.random.choice(notcomplitedid)
+        result = self.getcurrentevent(random_id)
 
         return result
 

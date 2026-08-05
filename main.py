@@ -21,7 +21,7 @@ ctk_lib.set_appearance_mode("dark")
 ctk_lib.set_default_color_theme("blue")
 
 root = ctk_lib.CTk()
-root.title("Выбор персонажа")
+root.title("D&D game")
 root.geometry("600x600")
 
 content_frame = ctk_lib.CTkFrame(root)
