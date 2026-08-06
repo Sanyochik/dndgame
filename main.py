@@ -48,6 +48,6 @@ controller = MainController(
     content_frame = content_frame
 
 )
-controller.journey_form()
+controller.hub_form()
 
 root.mainloop()

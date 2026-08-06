@@ -24,10 +24,10 @@ class Journey():
 
         return rows
 
-    def addjourney(self,event_data,user_data):
+    def addjourney(self,user_data,event_data):
         connection = self.db.connect()
         cursor = connection.cursor()
-        connection.execute(f"INSERT INTO journey (id_event,id_user,current_hp,enemy_hp,status) VALUES ('{event_data[0][0]}','{user_data[0][0]}','{user_data[0][4]}',{event_data[0][6]},1 ) RETURNING *")
+        cursor.execute(f"INSERT INTO journey (id_event,id_user,current_hp,enemy_hp,status) VALUES ('{event_data[0][0]}','{user_data[0][0]}','{user_data[0][4]}',{event_data[0][6]},1) RETURNING *")
         new_journey = cursor.fetchone()
         connection.commit()
         connection.close()

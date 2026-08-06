@@ -11,6 +11,15 @@ class Users():
 
         return rows
 
+    def getcurrentuser(self,user_id):
+        connection = self.db.connect()
+        cursor = connection.cursor()
+        request = cursor.execute(f"SELECT * FROM users WHERE id = {user_id}")
+        rows = request.fetchall()
+        connection.close()
+
+        return rows
+
     def adduser(self,username,str,chr,vit):
         connection = self.db.connect()
         connection.execute(f"INSERT INTO users (username,str,chr,vit) VALUES ('{username}',{str},{chr},{vit})")
