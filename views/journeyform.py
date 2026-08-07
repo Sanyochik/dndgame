@@ -1,4 +1,4 @@
-def journeyform(ctk,pil,content_frame,journey_info,user_info,event_info):
+def journeyform(ctk,pil,content_frame,controller,journey_info,user_info,event_info):
 
 
     username = user_info[0][1]
@@ -8,11 +8,16 @@ def journeyform(ctk,pil,content_frame,journey_info,user_info,event_info):
     user_charism_value = user_info[0][3]
     enemy_current_hp_value = (journey_info[0][4])
     enemy_max_hp_value = (event_info[0][6])
+    enemy_dmg = (event_info[0][9])
+    enemy_strength_def = (event_info[0][4])
+    enemy_charism_def = (event_info[0][5])
     img_url = (event_info[0][3])
 
-    def testfunc():
-        print("test")
-
+    def atack():
+        atack_result = controller.atackenemy(user_strength_value,enemy_dmg,enemy_strength_def,user_current_hp,enemy_current_hp_value)
+        print(atack_result)
+    def charm():
+        controller.charmenemy(user_charism_value,enemy_dmg,enemy_charism_def,user_current_hp,enemy_current_hp_value)
     enemy_img =ctk.CTkImage(
         light_image=pil.open(img_url),
         size=(200,200)
@@ -29,10 +34,10 @@ def journeyform(ctk,pil,content_frame,journey_info,user_info,event_info):
     enemy_hp = ctk.CTkLabel(content_frame, text=f"{enemy_current_hp_value}/{enemy_max_hp_value}")
     enemy_hp.pack(pady="20")
 
-    button = ctk.CTkButton(content_frame, text=f"Атаковать", command=testfunc)
+    button = ctk.CTkButton(content_frame, text=f"Атаковать", command=atack)
     button.pack(pady=10)
 
-    button = ctk.CTkButton(content_frame, text=f"Очаровать", command=testfunc)
+    button = ctk.CTkButton(content_frame, text=f"Очаровать", command=charm)
     button.pack(pady=10)
 
 

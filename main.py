@@ -11,6 +11,7 @@ from models.events import Events
 from models.journey import Journey
 from models.attribute import  Attribute
 from models.dice import  Dice
+from models.damage import  Damage
 import views.hubform as hubform_view
 import views.createform as createform_view
 import views.journeyform as journeyform_view
@@ -42,11 +43,11 @@ controller = MainController(
     journey_model=Journey,
     attribute_model = Attribute,
     dice_model = Dice,
+    damage_model = Damage,
     hubform_view=hubform_view,
     createform_view=createform_view,
     journeyform_view = journeyform_view,
     content_frame = content_frame
-
 )
 controller.hub_form()
 
